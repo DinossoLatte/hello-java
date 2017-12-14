@@ -1,3 +1,11 @@
+services:
+  - mysql
+
+before_install:
+  - echo "Initializing DB..."
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS hello_test;'
+  - echo "DB initialized."
+
 language: java
 
 notifications:
