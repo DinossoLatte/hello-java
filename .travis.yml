@@ -1,24 +1,26 @@
 services:
-  - mysql
-
+- mysql
 before_install:
-  - echo "Initializing DB..."
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS hello_test;'
-  - echo "DB initialized."
-
+- echo "Initializing DB..."
+- mysql -e 'CREATE DATABASE IF NOT EXISTS hello_test;'
+- echo "DB initialized."
 language: java
-
-jdk: 
-  - oraclejdk8
-  - oraclejdk9
-  - openjdk7
-
-env: 
-  - DATABASE=jdbc:mysql://localhost:3306/hello_test DB_USERNAME=travis DB_PASSWORD=""
-
+jdk:
+- oraclejdk8
+- oraclejdk9
+- openjdk7
+env:
+- DATABASE=jdbc:mysql://localhost:3306/hello_test DB_USERNAME=travis DB_PASSWORD=""
 notifications:
   email:
     recipients:
-      - ignalelop@alum.us.es
+    - ignalelop@alum.us.es
     on_success: always
     on_failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: peeDL1xIFJEwwjBJwsmXlqpuLd3m7JklaBIcmcP/Pm6dh3VnnywcsUUSrIXu+l7TaGJl5fRA7oJEFzDSTosvkboWVw7CGouPmN+1PkvblJD8xArlTg+l/GDk6CDGonHTJPN8b0RSH0djPgeTagjgReJvPuj1JZl/Bd0tdeXAr4TYUFwnMNflC11l5b/MmFIVYFgglfnBUPyzYLcYEamFl/EOt2GGNH4w3Dpy0paHQJfFZ8Qkym5jUbfRQwnrdoSE44aSnniyWE/N2/ODlDqrJ+18eubjbTn4ozDAEGdQEA+wFW6I1NT+IYTDuIzG8c5riYAmZ30arhH7ZFgv3zzEAmZZnQ7Zr9fEVFUTJjF+9RPIKzAY5Kp+q4plZngI1gk//9wXGwl3P9H5bIBMj6dgPNIycdFETzcsnxdHIOwJkqma+71U/mRHGN+yb+uiGxsoKrFUBp3e+X8jYyvlu5zMzRSByKgs7dfbxM/VIxo/lRULzKdGFEW81cqXIL8AT+2uFD5zBgh0vANXVD9wsJTC4gYZmEX2QxnFlqbkBkc2kiIP6fDKjEF7wNJrcnHFLBtK/sM0dyBzE+LJEX7DJQ1h2p6uN7+KWMccg30e/Cn06ejle4X3S1VCBCI8pkytDSU1hkc08nkiLoaSn7w0eGu6+Rsw37JWlWN4u5xLS1DJh5g=
+  app: hello-world-ignalelop
+  on:
+    repo: DinossoLatte/hello-java
