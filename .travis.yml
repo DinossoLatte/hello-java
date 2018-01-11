@@ -22,4 +22,3 @@ notifications:
       - ignalelop@alum.us.es
     on_success: always
     on_failure: always
-    
